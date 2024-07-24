@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd2yk63or67p2"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_e33xr"]
+[ext_resource type="Texture2D" uid="uid://c3516imnkub8v" path="res://icon.svg" id="1_j4l6l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dwgdw"]
+radius = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d83y"]
+size = Vector2(973, 128)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6f4v6"]
+radius = 109.0
+height = 474.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, -10)
+disable_mode = 2
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_e33xr")
+speedMultiplier = 3
+jumpForce = 2.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="CharacterBody2D"]
+disable_mode = 2
+mass = 2.07
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/RigidBody2D"]
+position = Vector2(0, -64)
+texture = ExtResource("1_j4l6l")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D/RigidBody2D"]
+position = Vector2(0, -64)
+shape = SubResource("CircleShape2D_dwgdw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, -64)
+shape = SubResource("CircleShape2D_dwgdw")
+disabled = true
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+disable_mode = 1
+mass = 1.82
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(0.5, 64)
+shape = SubResource("RectangleShape2D_1d83y")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2"]
+position = Vector2(0, 63)
+scale = Vector2(7.59375, 1)
+texture = ExtResource("1_j4l6l")
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+disable_mode = 1
+mass = 1000.0
+gravity_scale = 0.0
+constant_torque = 2.095
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D3"]
+position = Vector2(1, 368)
+scale = Vector2(1.73438, 3.67187)
+texture = ExtResource("1_j4l6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+position = Vector2(1, 368)
+shape = SubResource("CapsuleShape2D_6f4v6")
